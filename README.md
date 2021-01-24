@@ -3,14 +3,15 @@
 First, Run
 ### npm install 
 
-## Get ### Firebase.js ## inside firebase console
+## Get Firebase.js in firebase console
 
-Go to gear icon next to project name and project settings and click radio button of config. 
+In firebase console, 
+go to gear icon next to project name > project settings > click radio button of config. 
 
-Copy the code there and paste it into new file named ### Firebase.js 
+Copy the code there and paste it into new file named 'Firebase.js'
 
-In ### src
+In 'src'
 
-Run; 
+## Run; 
 
 ### npm start
