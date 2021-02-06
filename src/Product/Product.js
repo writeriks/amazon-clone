@@ -1,14 +1,15 @@
 import React from 'react'
 import './Product.css'
 import {useStateValue} from '../Provider/StateProvider'
+import {reducerTypes} from '../Provider/reducerTypes';
 
 function Product({id, title, image, price, rating}) {
 
-    const [{basket}, dispatch] = useStateValue();
+    const [, dispatch] = useStateValue();
 
     const addToBasket = () => {
         dispatch({
-            type: 'ADD_TO_BASKET',
+            type: reducerTypes.ADD_TO_BASKET,
             item: {
                 id: id,
                 title: title,

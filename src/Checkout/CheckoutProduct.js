@@ -1,15 +1,15 @@
 import React from 'react'
+import {reducerTypes} from '../Provider/reducerTypes';
 import {useStateValue} from '../Provider/StateProvider';
 import './CheckoutProduct.css'
 
 function CheckoutProduct({basketItem}) {
     const {id, image, title, price, rating} = basketItem;
-    const [{basket}, dispatch] = useStateValue();
+    const [, dispatch] = useStateValue();
 
     const removeFromBasket = () => {
-        console.log("hererere")
         dispatch({
-            type: 'REMOVE_FROM_BASKET',
+            type: reducerTypes.REMOVE_FROM_BASKET,
             id: id,
         })
     }
