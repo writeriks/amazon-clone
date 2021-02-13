@@ -3,11 +3,14 @@ import './Header.css'
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import {Link} from 'react-router-dom';
-import {useStateValue} from '../Provider/StateProvider';
+import {useAuthValue} from '../store/authentication/AuthenticationProvider';
+import {useBasketValue} from '../store/basket/BasketProvider';
 import {auth} from '../Firebase-Backend/firebase'
 
 function Header() {
-    const [{basket, user},] = useStateValue();
+    const [{user},] = useAuthValue();
+    const [{basket},] = useBasketValue();
+    console.log("🚀 ~ file: Header.js ~ line 11 ~ Header ~ basket", basket)
 
     const helloMessage = user ? `Hello ${user.email}` : 'Hello Guest';
     const signInStatus = user ? 'Sign out' : 'Sign In';

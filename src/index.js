@@ -3,14 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {StateProvider} from './Provider/StateProvider';
-import reducer, {initialState} from './Provider/reducer';
+import {BasketProvider} from './store/basket/BasketProvider';
+import {AuthProvider} from './store/authentication/AuthenticationProvider';
+import basketReducer, {initialBasketState} from './store/basket/basketReducer';
+import authReducer, {initialAuthState} from './store/authentication/authenticationReducer';
 
 ReactDOM.render(
   <React.StrictMode>
-    <StateProvider reducer={reducer} initialState={initialState} >
-      <App />
-    </StateProvider>
+    <AuthProvider reducer={authReducer} initialState={initialAuthState}>
+      <BasketProvider reducer={basketReducer} initialState={initialBasketState} >
+        <App />
+      </BasketProvider>
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

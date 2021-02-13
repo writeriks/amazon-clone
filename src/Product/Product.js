@@ -1,23 +1,21 @@
 import React from 'react'
 import './Product.css'
-import {useStateValue} from '../Provider/StateProvider'
-import {reducerTypes} from '../Provider/reducerTypes';
+import {useBasketValue} from '../store/basket/BasketProvider'
+import {addToBasketAction} from '../store/basket/basketActionCreator'
 
 function Product({id, title, image, price, rating}) {
 
-    const [, dispatch] = useStateValue();
+    const [, dispatch] = useBasketValue();
 
     const addToBasket = () => {
-        dispatch({
-            type: reducerTypes.ADD_TO_BASKET,
-            item: {
-                id: id,
-                title: title,
-                image: image,
-                price: price,
-                rating: rating,
-            },
-        })
+        const item = {
+            id: id,
+            title: title,
+            image: image,
+            price: price,
+            rating: rating,
+        }
+        addToBasketAction(item, dispatch)
     }
 
     return (

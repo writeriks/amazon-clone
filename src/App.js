@@ -6,28 +6,18 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Checkout from './Checkout/Checkout';
 import Login from './Login/Login';
 import {auth} from './Firebase-Backend/firebase'
-import {useStateValue} from './Provider/StateProvider'
-import {reducerTypes} from './Provider/reducerTypes';
+import {useAuthValue} from './store/authentication/AuthenticationProvider';
+import {setUserAuthentication} from './store/authentication/authenticationActionCreator'
 
 function App() {
-  const [, dispatch] = useStateValue();
+  const [, dispatch] = useAuthValue();
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        dispatch(
-          {
-            type: reducerTypes.SET_USER,
-            user: authUser
-          }
-        )
+        setUserAuthentication(authUser, dispatch)
       } else {
-        dispatch(
-          {
-            type: reducerTypes.SET_USER,
-            user: null
-          }
-        )
+        setUserAuthentication(null, dispatch)
       }
     })
   }, [dispatch])
