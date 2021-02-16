@@ -1,18 +1,20 @@
-import React from 'react'
+import React, {forwardRef} from 'react'
 import {useBasketValue} from '../store/basket/BasketProvider';
 import './CheckoutProduct.css'
 import {removeFromBasketAction} from '../store/basket/basketActionCreator';
 
-function CheckoutProduct({basketItem}) {
+const CheckoutProduct = forwardRef(({basketItem}, ref) => {
     const {id, image, title, price, rating} = basketItem;
     const [, dispatch] = useBasketValue();
 
     const removeFromBasket = () => {
+
+        console.log("🚀 ~ file: CheckoutProduct.js ~ line 14 ~ removeFromBasket ~ removeFromBasket")
         removeFromBasketAction(id, dispatch)
     }
 
     return (
-        <div className="checkoutProduct">
+        <div className="checkoutProduct" ref={ref}>
             <img className="checkoutProduct_image" src={image} alt={title} />
 
             <div className="checkoutProduct__info">
@@ -24,7 +26,7 @@ function CheckoutProduct({basketItem}) {
                 <p className="checkoutProduct__rating">{rating}
                     {
                         Array(rating).fill().map((_, i) =>
-                            <p>⭐</p>
+                            <p key={i}>⭐</p>
                         )
                     }
                 </p>
@@ -32,6 +34,6 @@ function CheckoutProduct({basketItem}) {
             </div>
         </div>
     )
-}
+});
 
 export default CheckoutProduct
