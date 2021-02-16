@@ -24,7 +24,7 @@
     mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
 }
 
-@media screen and (max-width: 1000px) {
+/* @media screen and (max-width: 1000px) {
     .home__image {
         margin-bottom: -150px;
     }
@@ -35,4 +35,4 @@
     .home__image {
         margin-bottom: -100px;
     }
-  }
+  } */

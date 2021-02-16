@@ -1,11 +1,13 @@
 import React from 'react'
-import {useStateValue} from '../Provider/StateProvider';
+import {useAuthValue} from '../store/authentication/AuthenticationProvider';
+import {useBasketValue} from '../store/basket/BasketProvider';
 import Subtotal from '../Subtotal/Subtotal';
 import './Checkout.css';
 import CheckoutProduct from './CheckoutProduct';
 
 function Checkout() {
-    const [{basket},] = useStateValue();
+    const [{basket},] = useBasketValue();
+    const [{user},] = useAuthValue();
     return (
         <div className="checkout">
             <div className="checkout__left">
@@ -15,6 +17,7 @@ function Checkout() {
                     alt="checkout ad" />
 
                 <div>
+                    <h3>Hello, {user?.email}</h3>
                     <h2 className="checkout__title">
                         Your Shopping Basket
                     </h2>

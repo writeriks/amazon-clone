@@ -1,12 +1,12 @@
-import {reducerTypes} from './reducerTypes';
+import {reducerTypes} from '../reducerTypes';
 
-export const initialState = {
+export const initialBasketState = {
     basket: [],
 }
 
 export const getBasketTotal = (basket) => basket?.reduce((amount, item) => item.price + amount, 0)
 
-const reducer = (state, action) => {
+const basketReducer = (state, action) => {
     switch (action.type) {
         case reducerTypes.ADD_TO_BASKET:
             return {
@@ -31,4 +31,4 @@ const reducer = (state, action) => {
     }
 };
 
-export default reducer;
+export default basketReducer;
