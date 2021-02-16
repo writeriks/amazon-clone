@@ -10,9 +10,8 @@ import {auth} from '../Firebase-Backend/firebase'
 function Header() {
     const [{user},] = useAuthValue();
     const [{basket},] = useBasketValue();
-    console.log("🚀 ~ file: Header.js ~ line 11 ~ Header ~ basket", basket)
 
-    const helloMessage = user ? `Hello ${user.email}` : 'Hello Guest';
+    const helloMessage = user ? `Hello ${user?.email}` : 'Hello Guest';
     const signInStatus = user ? 'Sign out' : 'Sign In';
 
     const handleAuthentication = () => {
