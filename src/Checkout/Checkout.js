@@ -4,8 +4,9 @@ import {useBasketValue} from '../store/basket/BasketProvider';
 import Subtotal from '../Subtotal/Subtotal';
 import './Checkout.css';
 import CheckoutProduct from './CheckoutProduct';
+import FlipMove from 'react-flip-move';
 
-function Checkout() {
+const Checkout = () => {
     const [{basket},] = useBasketValue();
     const [{user},] = useAuthValue();
     return (
@@ -21,9 +22,11 @@ function Checkout() {
                     <h2 className="checkout__title">
                         Your Shopping Basket
                     </h2>
-                    {basket.map((basketItem) => (
-                        <CheckoutProduct basketItem={basketItem} />
-                    ))}
+                    <FlipMove leaveAnimation="accordionHorizontal">
+                        {basket.map((basketItem, i) => (
+                            <CheckoutProduct key={basketItem.id} basketItem={basketItem} />
+                        ))}
+                    </FlipMove>
                 </div>
             </div>
 
