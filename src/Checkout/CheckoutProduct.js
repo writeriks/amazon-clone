@@ -8,14 +8,12 @@ const CheckoutProduct = forwardRef(({basketItem}, ref) => {
     const [, dispatch] = useBasketValue();
 
     const removeFromBasket = () => {
-
-        console.log("🚀 ~ file: CheckoutProduct.js ~ line 14 ~ removeFromBasket ~ removeFromBasket")
         removeFromBasketAction(id, dispatch)
     }
 
     return (
         <div className="checkoutProduct" ref={ref}>
-            <img className="checkoutProduct_image" src={image} alt={title} />
+            <img className="checkoutProduct__image" src={image} alt={title} />
 
             <div className="checkoutProduct__info">
                 <p className="checkoutProduct__title">{title}</p>

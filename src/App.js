@@ -8,6 +8,7 @@ import Login from './Login/Login';
 import {auth} from './Firebase-Backend/firebase'
 import {useAuthValue} from './store/authentication/AuthenticationProvider';
 import {setUserAuthentication} from './store/authentication/authenticationActionCreator'
+import Payment from './Payment/Payment.';
 
 function App() {
   const [, dispatch] = useAuthValue();
@@ -32,6 +33,10 @@ function App() {
           <Route path="/checkout">
             <Header />
             <Checkout />
+          </Route>
+          <Route path="/payment">
+            <Header />
+            <Payment />
           </Route>
           <Route path="/">
             <Header />
