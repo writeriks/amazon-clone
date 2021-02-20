@@ -9,6 +9,10 @@ import {auth} from './Firebase-Backend/firebase'
 import {useAuthValue} from './store/authentication/AuthenticationProvider';
 import {setUserAuthentication} from './store/authentication/authenticationActionCreator'
 import Payment from './Payment/Payment.';
+import {loadStripe} from '@stripe/stripe-js';
+import {Elements} from '@stripe/react-stripe-js';
+
+const promise = loadStripe('pk_test_D19nfyE8JfMSP99ms7Atlxlf0001HGdMyF');
 
 function App() {
   const [, dispatch] = useAuthValue();
@@ -36,7 +40,9 @@ function App() {
           </Route>
           <Route path="/payment">
             <Header />
-            <Payment />
+            <Elements stripe={promise}>
+              < Payment />
+            </Elements>
           </Route>
           <Route path="/">
             <Header />
