@@ -11,6 +11,7 @@ import {setUserAuthentication} from './store/authentication/authenticationAction
 import Payment from './Payment/Payment.';
 import {loadStripe} from '@stripe/stripe-js';
 import {Elements} from '@stripe/react-stripe-js';
+import Orders from './Orders/Orders';
 
 const promise = loadStripe('pk_test_D19nfyE8JfMSP99ms7Atlxlf0001HGdMyF');
 
@@ -31,6 +32,10 @@ function App() {
     <Router>
       <div className="app">
         <Switch>
+          <Route path="/orders">
+            <Header />
+            <Orders />
+          </Route>
           <Route path="/login">
             <Login />
           </Route>
