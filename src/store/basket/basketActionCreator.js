@@ -14,3 +14,10 @@ export const removeFromBasketAction = (id, dispatch) => {
         id: id,
     })
 }
+
+
+export const emptyBasketAction = (dispatch) => {
+    dispatch({
+        type: reducerTypes.EMPTY_BASKET,
+    })
+}

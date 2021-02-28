@@ -3,19 +3,17 @@ import {useBasketValue} from '../store/basket/BasketProvider';
 import './CheckoutProduct.css'
 import {removeFromBasketAction} from '../store/basket/basketActionCreator';
 
-const CheckoutProduct = forwardRef(({basketItem}, ref) => {
+const CheckoutProduct = forwardRef(({basketItem, hideButton}, ref) => {
     const {id, image, title, price, rating} = basketItem;
     const [, dispatch] = useBasketValue();
 
     const removeFromBasket = () => {
-
-        console.log("🚀 ~ file: CheckoutProduct.js ~ line 14 ~ removeFromBasket ~ removeFromBasket")
         removeFromBasketAction(id, dispatch)
     }
 
     return (
         <div className="checkoutProduct" ref={ref}>
-            <img className="checkoutProduct_image" src={image} alt={title} />
+            <img className="checkoutProduct__image" src={image} alt={title} />
 
             <div className="checkoutProduct__info">
                 <p className="checkoutProduct__title">{title}</p>
@@ -30,7 +28,7 @@ const CheckoutProduct = forwardRef(({basketItem}, ref) => {
                         )
                     }
                 </p>
-                <button onClick={removeFromBasket}>Remove from Basket</button>
+                {!hideButton && <button onClick={removeFromBasket}>Remove from Basket</button>}
             </div>
         </div>
     )

@@ -26,6 +26,11 @@ const basketReducer = (state, action) => {
                 ...state,
                 basket: newBasket
             }
+        case reducerTypes.EMPTY_BASKET:
+            return {
+                ...state,
+                basket: [],
+            };
         default:
             return state;
     }
