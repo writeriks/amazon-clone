@@ -26,6 +26,9 @@ app.post("/payments/create", async (request, response) => {
 });
 
 exports.api = functions.https.onRequest(app);
+// to create a deploy, npm run build
+// firebase deploy --only hosting
+
 // http://localhost:5001/clone-dfdc9/us-central1/api
 // to run emulator => firebase emulators:start
 // we create functions file with firebase-init and following functions steps... 
@@ -33,3 +36,8 @@ exports.api = functions.https.onRequest(app);
 
 // in the index.js, we create the route to receive basket information, send it to stripe, and 
 // and return received client secret..
+
+// after all, do firebase deploy --only functions to deploy backend... 
+// You need Blaze account on firebase to deploy.
+// after that step, get the api link in Functions tab of firebase and use that link 
+// to create request on axios file.

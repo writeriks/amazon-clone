@@ -57,7 +57,8 @@ function Payment() {
         setProcessing(true);
         const cardElement = elements.getElement(CardElement);
         if (clientSecret) {
-            await paymentHelper.confirmPaymentWithSecret(stripe, clientSecret, cardElement)
+            const result = await paymentHelper.confirmPaymentWithSecret(stripe, clientSecret, cardElement, user, basket)
+            console.log("🚀 ~ file: Payment..js ~ line 62 ~ handlePaymentSubmit ~ result", result)
             setSucceeded(true)
             setProcessing(false)
             setError(null)
@@ -120,7 +121,7 @@ function Payment() {
                                 <CurrencyFormat
                                     renderText={(value) => (
                                         <>
-                                            <h3>Order Total: {value}</h3>
+                                            <h4>Order Total: {value}</h4>
                                         </>
                                     )}
                                     decimalScale={2}
