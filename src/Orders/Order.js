@@ -11,9 +11,6 @@ function Order({order}) {
             <Moment style={{fontWeight: "600"}} unix format="DD/MM/YYYY hh:mm" >
                 {order.data.created}
             </Moment>
-            <p className="order__id">
-                <small>{order.id}</small>
-            </p>
             {
                 order.data.basket?.map(item => <CheckoutProduct key={item.id} basketItem={item} hideButton />)
             }

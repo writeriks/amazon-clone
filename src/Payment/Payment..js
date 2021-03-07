@@ -1,22 +1,25 @@
-import React, {useEffect, useState} from 'react'
-import './Payment.css'
-import {useAuthValue} from '../store/authentication/AuthenticationProvider'
-import {useBasketValue} from '../store/basket/BasketProvider'
-import CheckoutProduct from '../Checkout/CheckoutProduct'
-import {Link, useHistory} from 'react-router-dom'
-import {CardElement, useElements, useStripe} from '@stripe/react-stripe-js'
-import CurrencyFormat from 'react-currency-format'
-import {getBasketTotal} from '../store/basket/basketReducer'
-import axios from '../axios'
-import paymentHelper from './payment-helper'
-import {emptyBasketAction} from '../store/basket/basketActionCreator'
-//const stripeAction = require('stripe')('sk_test_YAaXSPovtBvzCEBIn8SnLmkC00zmBK3veE');
+import React, {useEffect, useState} from 'react';
+import './Payment.css';
+import basketReducerSelector from '../redux-reducer/basket-reducer/basket-reducer-selector';
+import CheckoutProduct from '../Checkout/CheckoutProduct';
+import {Link, useHistory} from 'react-router-dom';
+import {CardElement, useElements, useStripe} from '@stripe/react-stripe-js';
+import CurrencyFormat from 'react-currency-format';
+import axios from '../axios';
+import paymentHelper from './payment-helper';
+import {useSelector, useDispatch} from 'react-redux';
+import authReducerSelector from '../redux-reducer/auth-reducer/auth-reducer-selector';
+import basketActionCreator from '../redux-reducer/basket-reducer/basket-action-creator';
 
 
 function Payment() {
     const history = useHistory()
-    const [{user},] = useAuthValue()
-    const [{basket}, dispatch] = useBasketValue()
+
+    const dispatch = useDispatch()
+    const basket = useSelector(basketReducerSelector.getBasket)
+    const basketTotal = useSelector(basketReducerSelector.getBasketTotal)
+    const user = useSelector(authReducerSelector.getCurrentUser)
+
     const stripe = useStripe();
     const elements = useElements();
     const {confirmPaymentWithoutSecret} = paymentHelper;
@@ -33,12 +36,12 @@ function Payment() {
             const response = await axios({
                 method: 'post',
                 // Stripe expects the total in currencies subunits
-                url: `/payments/create?total=${getBasketTotal(basket) * 100}`
+                url: `/payments/create?total=${basketTotal * 100}`
             })
             setClientSecret(response.data.clientSecret)
         }
         getClientSecret()
-    }, [basket])
+    }, [basket, basketTotal])
 
 
     /**
@@ -57,8 +60,7 @@ function Payment() {
         setProcessing(true);
         const cardElement = elements.getElement(CardElement);
         if (clientSecret) {
-            const result = await paymentHelper.confirmPaymentWithSecret(stripe, clientSecret, cardElement, user, basket)
-            console.log("🚀 ~ file: Payment..js ~ line 62 ~ handlePaymentSubmit ~ result", result)
+            await paymentHelper.confirmPaymentWithSecret(stripe, clientSecret, cardElement, user, basket)
             setSucceeded(true)
             setProcessing(false)
             setError(null)
@@ -74,7 +76,7 @@ function Payment() {
                 setError(error.message)
             }
         }
-        emptyBasketAction(dispatch)
+        dispatch(basketActionCreator.emptyBasketAction())
     }
 
     const handlePaymentChange = (e) => {
@@ -125,7 +127,7 @@ function Payment() {
                                         </>
                                     )}
                                     decimalScale={2}
-                                    value={getBasketTotal(basket)}
+                                    value={basketTotal}
                                     displayType={"text"}
                                     thousandSeperator={true}
                                     prefix={"$"}

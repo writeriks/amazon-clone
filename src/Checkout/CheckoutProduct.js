@@ -1,14 +1,14 @@
 import React, {forwardRef} from 'react'
-import {useBasketValue} from '../store/basket/BasketProvider';
+import {useDispatch} from 'react-redux';
 import './CheckoutProduct.css'
-import {removeFromBasketAction} from '../store/basket/basketActionCreator';
+import basketActionCreator from '../redux-reducer/basket-reducer/basket-action-creator'
 
 const CheckoutProduct = forwardRef(({basketItem, hideButton}, ref) => {
     const {id, image, title, price, rating} = basketItem;
-    const [, dispatch] = useBasketValue();
+    const dispatch = useDispatch()
 
     const removeFromBasket = () => {
-        removeFromBasketAction(id, dispatch)
+        dispatch(basketActionCreator.removeFromBasketAction(id))
     }
 
     return (

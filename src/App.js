@@ -1,30 +1,34 @@
 import {useEffect} from 'react';
-import './App.css';
-import Header from './Header/Header';
-import Home from './Home/Home';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import Checkout from './Checkout/Checkout';
-import Login from './Authentication/Login';
-import {auth} from './Firebase-Backend/firebase'
-import {useAuthValue} from './store/authentication/AuthenticationProvider';
-import {setUserAuthentication} from './store/authentication/authenticationActionCreator'
-import Payment from './Payment/Payment.';
+import authReducerActionCreator from './redux-reducer/auth-reducer/auth-action-creator';
+import {useDispatch} from 'react-redux'
+
 import {loadStripe} from '@stripe/stripe-js';
 import {Elements} from '@stripe/react-stripe-js';
+import {auth} from './Firebase-Backend/firebase'
+
+import Payment from './Payment/Payment.';
+import Header from './Header/Header';
+import Home from './Home/Home';
+import Login from './Authentication/Login';
 import Orders from './Orders/Orders';
 import Register from './Authentication/register';
+import Checkout from './Checkout/Checkout';
+import './App.css';
 
 const promise = loadStripe('pk_test_D19nfyE8JfMSP99ms7Atlxlf0001HGdMyF');
 
 function App() {
-  const [, dispatch] = useAuthValue();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        setUserAuthentication(authUser, dispatch)
+        dispatch(authReducerActionCreator.setUserAuthentication(authUser))
+        //setUserAuthentication(authUser, dispatch)
       } else {
-        setUserAuthentication(null, dispatch)
+        dispatch(authReducerActionCreator.setUserAuthentication(null))
+        //setUserAuthentication(null, dispatch)
       }
     })
   }, [dispatch])

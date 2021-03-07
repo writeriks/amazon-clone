@@ -1,11 +1,13 @@
 import React from 'react'
-import {useAuthValue} from '../store/authentication/AuthenticationProvider'
 import accountPopoverHelper from './account-popover-helper'
+import {useSelector} from 'react-redux'
+import authReducerSelector from '../redux-reducer/auth-reducer/auth-reducer-selector'
+
 
 function SignedInUserPopover() {
-    const [{user},] = useAuthValue()
-
+    const user = useSelector(authReducerSelector.getCurrentUser)
     const {signOutFirebase} = accountPopoverHelper;
+
     return (
         <>
             <div className="myAccount__Section">

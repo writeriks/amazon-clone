@@ -1,13 +1,15 @@
 import React from 'react'
 import './Subtotal.css'
 import CurrencyFormat from 'react-currency-format'
-import {useBasketValue} from '../store/basket/BasketProvider';
-import {getBasketTotal} from '../store/basket/basketReducer';
+import basketReducerSelector from '../redux-reducer/basket-reducer/basket-reducer-selector'
 import {useHistory} from 'react-router-dom';
+import {useSelector} from 'react-redux'
+
 
 function Subtotal() {
     const history = useHistory();
-    const [{basket}] = useBasketValue()
+    const basket = useSelector(basketReducerSelector.getBasket)
+    const basketTotal = useSelector(basketReducerSelector.getBasketTotal)
 
     return (
         <div className="subtotal">
@@ -24,7 +26,7 @@ function Subtotal() {
                     </>
                 )}
                 decimalScale={2}
-                value={getBasketTotal(basket)}
+                value={basketTotal}
                 displayType={"text"}
                 thousandSeperator={true}
                 prefix={"$"}
