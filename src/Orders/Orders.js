@@ -1,12 +1,15 @@
 import React, {useEffect, useState} from 'react'
 import {db} from '../Firebase-Backend/firebase';
-import {useAuthValue} from '../store/authentication/AuthenticationProvider';
 import Order from './Order';
 import "./Orders.css"
+import {useSelector} from 'react-redux'
+import authReducerSelector from '../redux-reducer/auth-reducer/auth-reducer-selector'
+
 
 function Orders() {
     const [orders, setOrders] = useState([]);
-    const [{user},] = useAuthValue()
+    const user = useSelector(authReducerSelector.getCurrentUser)
+
     useEffect(() => {
         if (user) {
             db

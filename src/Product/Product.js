@@ -1,11 +1,11 @@
 import React from 'react'
 import './Product.css'
-import {useBasketValue} from '../store/basket/BasketProvider'
-import {addToBasketAction} from '../store/basket/basketActionCreator'
+import {useDispatch} from 'react-redux'
+import basketActionCreator from '../redux-reducer/basket-reducer/basket-action-creator'
 
 function Product({id, title, image, price, rating}) {
 
-    const [, dispatch] = useBasketValue();
+    const dispatch = useDispatch();
 
     const addToBasket = () => {
         const item = {
@@ -15,7 +15,7 @@ function Product({id, title, image, price, rating}) {
             price: price,
             rating: rating,
         }
-        addToBasketAction(item, dispatch)
+        dispatch(basketActionCreator.addToBasketAction(item))
     }
 
     return (

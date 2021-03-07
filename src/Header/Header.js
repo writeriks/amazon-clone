@@ -5,13 +5,14 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import Popover from '@material-ui/core/Popover';
 import {Link} from 'react-router-dom';
-import {useAuthValue} from '../store/authentication/AuthenticationProvider';
-import {useBasketValue} from '../store/basket/BasketProvider';
+import authReducerSelector from '../redux-reducer/auth-reducer/auth-reducer-selector';
+import basketReducerSelector from '../redux-reducer/basket-reducer/basket-reducer-selector'
 import MyAccount from '../Popover/my-account-popover';
+import {useSelector} from 'react-redux'
 
 function Header() {
-    const [{user},] = useAuthValue();
-    const [{basket},] = useBasketValue();
+    const basket = useSelector(basketReducerSelector.getBasket)
+    const user = useSelector(authReducerSelector.getCurrentUser)
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 

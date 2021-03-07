@@ -1,14 +1,16 @@
 import React from 'react'
-import {useAuthValue} from '../store/authentication/AuthenticationProvider';
-import {useBasketValue} from '../store/basket/BasketProvider';
+import authReducerSelector from '../redux-reducer/auth-reducer/auth-reducer-selector'
+import basketReducerSelector from '../redux-reducer/basket-reducer/basket-reducer-selector'
+import {useSelector} from 'react-redux'
 import Subtotal from '../Subtotal/Subtotal';
 import './Checkout.css';
 import CheckoutProduct from './CheckoutProduct';
 import FlipMove from 'react-flip-move';
 
 const Checkout = () => {
-    const [{basket},] = useBasketValue();
-    const [{user},] = useAuthValue();
+    const basket = useSelector(basketReducerSelector.getBasket)
+    const user = useSelector(authReducerSelector.getCurrentUser)
+
     return (
         <div className="checkout">
             <div className="checkout__left">
