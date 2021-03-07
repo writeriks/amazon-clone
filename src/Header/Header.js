@@ -2,23 +2,29 @@ import React from 'react'
 import './Header.css'
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import Popover from '@material-ui/core/Popover';
 import {Link} from 'react-router-dom';
 import {useAuthValue} from '../store/authentication/AuthenticationProvider';
 import {useBasketValue} from '../store/basket/BasketProvider';
-import {auth} from '../Firebase-Backend/firebase'
+import MyAccount from '../Popover/my-account-popover';
 
 function Header() {
     const [{user},] = useAuthValue();
     const [{basket},] = useBasketValue();
 
-    const helloMessage = user ? `Hello ${user?.email}` : 'Hello Guest';
-    const signInStatus = user ? 'Sign out' : 'Sign In';
+    const [anchorEl, setAnchorEl] = React.useState(null);
 
-    const handleAuthentication = () => {
-        if (user) {
-            auth.signOut();
-        }
-    }
+    const helloMessage = user ? `Hello ${user?.email}` : 'Hello Guest';
+
+    const open = Boolean(anchorEl);
+    const handleOpenPopover = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    const popoverId = open ? 'account-popover' : undefined;
 
     return (
         <div className="header">
@@ -36,12 +42,31 @@ function Header() {
             </div>
 
             <div className="header__nav">
-                <Link to={!user ? "/login" : "/"}>
-                    <div onClick={handleAuthentication} className="header__option">
+                <div>
+                    <div className="header__option"
+                        onClick={handleOpenPopover}>
                         <span className="header__optionOnLineOne">{helloMessage}</span>
-                        <span className="header__optionOnLineTwo">{signInStatus}</span>
+                        <span className="header__myAmazon">My Amazon
+                    <ArrowDropDownIcon />
+                        </span>
                     </div>
-                </Link>
+                    <Popover
+                        id={popoverId}
+                        open={open}
+                        anchorEl={anchorEl}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'center',
+                        }}
+                        onClose={handleClose}
+                    >
+                        <MyAccount />
+                    </Popover>
+                </div>
 
                 <Link to="/orders">
                     <div className="header__option">
@@ -50,15 +75,12 @@ function Header() {
                     </div>
                 </Link>
 
-                <div className="header__option">
-                    <span className="header__optionOnLineOne">Your</span>
-                    <span className="header__optionOnLineTwo">Prime</span>
-                </div>
-
-                <Link to="/checkout">
-                    <div className="header__optionBasket">
-                        <ShoppingBasketIcon />
-                        <span className="header__optionOnLineTwo header__basketCount">{basket?.length}</span>
+                <Link to="/checkout" className="checkout__container">
+                    <div className="header__option">
+                        <div className="header__optionBasket">
+                            <ShoppingBasketIcon />
+                            <span className="header__optionOnLineTwo header__basketCount">{basket?.length}</span>
+                        </div>
                     </div>
                 </Link>
             </div>

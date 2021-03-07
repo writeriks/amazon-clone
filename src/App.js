@@ -4,7 +4,7 @@ import Header from './Header/Header';
 import Home from './Home/Home';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Checkout from './Checkout/Checkout';
-import Login from './Login/Login';
+import Login from './Authentication/Login';
 import {auth} from './Firebase-Backend/firebase'
 import {useAuthValue} from './store/authentication/AuthenticationProvider';
 import {setUserAuthentication} from './store/authentication/authenticationActionCreator'
@@ -12,6 +12,7 @@ import Payment from './Payment/Payment.';
 import {loadStripe} from '@stripe/stripe-js';
 import {Elements} from '@stripe/react-stripe-js';
 import Orders from './Orders/Orders';
+import Register from './Authentication/register';
 
 const promise = loadStripe('pk_test_D19nfyE8JfMSP99ms7Atlxlf0001HGdMyF');
 
@@ -35,6 +36,9 @@ function App() {
           <Route path="/orders">
             <Header />
             <Orders />
+          </Route>
+          <Route path="/Register">
+            <Register />
           </Route>
           <Route path="/login">
             <Login />
