@@ -1,9 +1,9 @@
-import {reducerTypes} from "../reducerTypes";
+import {authReducerTypes} from "../reducerTypes";
 
 class AuthReducerActionCreator {
     setUserAuthentication(user) {
         return {
-            type: reducerTypes.SET_USER,
+            type: authReducerTypes.SET_USER,
             user: user
         }
     }

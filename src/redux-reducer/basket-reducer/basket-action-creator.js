@@ -1,24 +1,24 @@
-import {reducerTypes} from '../reducerTypes';
+import {basketReducerTypes} from '../reducerTypes';
 
 
 class BasketActionCreator {
     addToBasketAction = (item) => {
         return {
-            type: reducerTypes.ADD_TO_BASKET,
+            type: basketReducerTypes.ADD_TO_BASKET,
             item
         }
     };
 
     removeFromBasketAction = (id) => {
         return {
-            type: reducerTypes.REMOVE_FROM_BASKET,
+            type: basketReducerTypes.REMOVE_FROM_BASKET,
             id: id,
         }
     };
 
     emptyBasketAction = () => {
         return {
-            type: reducerTypes.EMPTY_BASKET,
+            type: basketReducerTypes.EMPTY_BASKET,
         }
     }
 }

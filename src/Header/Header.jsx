@@ -7,25 +7,22 @@ import Popover from '@material-ui/core/Popover';
 import {Link} from 'react-router-dom';
 import authReducerSelector from '../redux-reducer/auth-reducer/auth-reducer-selector';
 import basketReducerSelector from '../redux-reducer/basket-reducer/basket-reducer-selector'
+import displayReducerSelector from '../redux-reducer/display-reducer/display-reducer-selector'
+
 import MyAccount from '../Popover/my-account-popover';
 import {useSelector} from 'react-redux'
+import headerHelper from './header-helper';
 
 function Header() {
     const basket = useSelector(basketReducerSelector.getBasket)
     const user = useSelector(authReducerSelector.getCurrentUser)
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const anchorEl = useSelector(displayReducerSelector.getPopover)
+    const {openMyAccountPopover, closeMyAccountPopover} = headerHelper;
 
     const helloMessage = user ? `Hello ${user?.email}` : 'Hello Guest';
 
-    const open = Boolean(anchorEl);
-    const handleOpenPopover = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-    const popoverId = open ? 'account-popover' : undefined;
+    const popoverId = !!anchorEl ? 'account-popover' : undefined;
 
     return (
         <div className="header">
@@ -45,7 +42,7 @@ function Header() {
             <div className="header__nav">
                 <div>
                     <div className="header__option"
-                        onClick={handleOpenPopover}>
+                        onClick={openMyAccountPopover}>
                         <span className="header__optionOnLineOne">{helloMessage}</span>
                         <span className="header__myAmazon">My Amazon
                     <ArrowDropDownIcon />
@@ -53,7 +50,7 @@ function Header() {
                     </div>
                     <Popover
                         id={popoverId}
-                        open={open}
+                        open={!!anchorEl}
                         anchorEl={anchorEl}
                         anchorOrigin={{
                             vertical: 'bottom',
@@ -63,7 +60,7 @@ function Header() {
                             vertical: 'top',
                             horizontal: 'center',
                         }}
-                        onClose={handleClose}
+                        onClose={closeMyAccountPopover}
                     >
                         <MyAccount />
                     </Popover>
