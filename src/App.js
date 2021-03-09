@@ -8,10 +8,10 @@ import {Elements} from '@stripe/react-stripe-js';
 import {auth} from './Firebase-Backend/firebase'
 
 import Payment from './Payment/Payment.';
-import Header from './Header/Header';
-import Home from './Home/Home';
-import Login from './Authentication/Login';
-import Orders from './Orders/Orders';
+import Header from './Header/header';
+import Home from './Home/home';
+import Login from './Authentication/login';
+import OrderList from './Orders/order-list';
 import Register from './Authentication/register';
 import Checkout from './Checkout/Checkout';
 import './App.css';
@@ -39,7 +39,7 @@ function App() {
         <Switch>
           <Route path="/orders">
             <Header />
-            <Orders />
+            <OrderList />
           </Route>
           <Route path="/Register">
             <Register />

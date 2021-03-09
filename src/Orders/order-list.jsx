@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import {db} from '../Firebase-Backend/firebase';
-import Order from './Order';
+import Order from './order';
 import "./Orders.css"
 import {useSelector} from 'react-redux'
 import authReducerSelector from '../redux-reducer/auth-reducer/auth-reducer-selector'
 
 
-function Orders() {
+function OrderList() {
     const [orders, setOrders] = useState([]);
     const user = useSelector(authReducerSelector.getCurrentUser)
 
@@ -42,4 +42,4 @@ function Orders() {
     )
 }
 
-export default Orders
+export default OrderList
