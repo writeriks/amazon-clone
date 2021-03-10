@@ -1,8 +1,7 @@
 import {auth} from '../Firebase-Backend/firebase'
 
 
-class LoginHelper {
-
+class AuthHelper {
     signInWithFirebase(history, email, password) {
         auth.signInWithEmailAndPassword(email, password)
             .then((auth) => {
@@ -13,5 +12,5 @@ class LoginHelper {
     }
 }
 
-const loginHelper = new LoginHelper();
-export default loginHelper;
+const authHelper = new AuthHelper();
+export default authHelper;

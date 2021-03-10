@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
 import './login.css'
 import {Link, useHistory} from 'react-router-dom'
-//import {auth} from '../Firebase-Backend/firebase'
-import loginHelper from './login-helper';
+import authHelper from './auth-helper';
 
 
 function Login() {
@@ -10,7 +9,7 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
 
-    const {signInWithFirebase} = loginHelper;
+    const {signInWithFirebase} = authHelper;
 
     const signIn = (e) => {
         e.preventDefault()
