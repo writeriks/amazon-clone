@@ -17,12 +17,12 @@ function Header() {
     const basket = useSelector(basketReducerSelector.getBasket)
     const user = useSelector(authReducerSelector.getCurrentUser)
 
-    const anchorEl = useSelector(displayReducerSelector.getPopover)
+    const popoverEl = useSelector(displayReducerSelector.getPopover)
     const {openMyAccountPopover, closeMyAccountPopover} = headerHelper;
 
     const helloMessage = user ? `Hello ${user?.email}` : 'Hello Guest';
 
-    const popoverId = !!anchorEl ? 'account-popover' : undefined;
+    const popoverId = !!popoverEl ? 'account-popover' : undefined;
 
     return (
         <div className="header">
@@ -50,8 +50,8 @@ function Header() {
                     </div>
                     <Popover
                         id={popoverId}
-                        open={!!anchorEl}
-                        anchorEl={anchorEl}
+                        open={!!popoverEl}
+                        anchorEl={popoverEl}
                         anchorOrigin={{
                             vertical: 'bottom',
                             horizontal: 'left',

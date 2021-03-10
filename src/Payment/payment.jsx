@@ -20,10 +20,11 @@ function Payment() {
 
     const stripe = useStripe();
     const elements = useElements();
+
     const {submitPayment} = paymentHelper;
 
     const [succeeded, setSucceeded] = useState(false);
-    const [processing, setProcessing] = useState("");
+    const [processing, setProcessing] = useState(false);
     const [error, setError] = useState(null);
     const [disabled, setDisabled] = useState(true)
     const [clientSecret, setClientSecret] = useState(false)
@@ -40,23 +41,23 @@ function Payment() {
     }, [basket, basketTotal])
 
 
-    const paymentParameters = {
-        stripe,
-        elements,
-        CardElement,
-        clientSecret,
-        user,
-        basket,
-        history,
-        setProcessing,
-        setSucceeded,
-        setError,
-    }
 
     const handlePaymentSubmit = async (e) => {
         e.preventDefault();
         if (!stripe || !elements) {
             return;
+        }
+        const paymentParameters = {
+            stripe,
+            elements,
+            CardElement,
+            clientSecret,
+            user,
+            basket,
+            history,
+            setProcessing,
+            setSucceeded,
+            setError,
         }
         await submitPayment(paymentParameters)
     }
