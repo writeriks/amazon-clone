@@ -1,4 +1,4 @@
-import {reducerTypes} from '../reducerTypes';
+import {authReducerTypes} from '../reducerTypes';
 
 export const initialAuthState = {
     user: null,
@@ -6,7 +6,7 @@ export const initialAuthState = {
 
 const authReducer = (state = initialAuthState, action) => {
     switch (action.type) {
-        case reducerTypes.SET_USER:
+        case authReducerTypes.SET_USER:
             return {
                 ...state,
                 user: action.user

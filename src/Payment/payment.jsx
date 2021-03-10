@@ -1,41 +1,38 @@
 import React, {useEffect, useState} from 'react';
-import './Payment.css';
+import './payment.css';
 import basketReducerSelector from '../redux-reducer/basket-reducer/basket-reducer-selector';
-import CheckoutProduct from '../Checkout/CheckoutProduct';
+import CheckoutProduct from '../Checkout/checkout-product';
 import {Link, useHistory} from 'react-router-dom';
 import {CardElement, useElements, useStripe} from '@stripe/react-stripe-js';
 import CurrencyFormat from 'react-currency-format';
 import axios from '../axios';
 import paymentHelper from './payment-helper';
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import authReducerSelector from '../redux-reducer/auth-reducer/auth-reducer-selector';
-import basketActionCreator from '../redux-reducer/basket-reducer/basket-action-creator';
 
 
 function Payment() {
     const history = useHistory()
 
-    const dispatch = useDispatch()
     const basket = useSelector(basketReducerSelector.getBasket)
     const basketTotal = useSelector(basketReducerSelector.getBasketTotal)
     const user = useSelector(authReducerSelector.getCurrentUser)
 
     const stripe = useStripe();
     const elements = useElements();
-    const {confirmPaymentWithoutSecret} = paymentHelper;
+
+    const {submitPayment} = paymentHelper;
 
     const [succeeded, setSucceeded] = useState(false);
-    const [processing, setProcessing] = useState("");
+    const [processing, setProcessing] = useState(false);
     const [error, setError] = useState(null);
     const [disabled, setDisabled] = useState(true)
     const [clientSecret, setClientSecret] = useState(false)
 
     useEffect(() => {
-        // Get client Secret from Cloud Function
         const getClientSecret = async () => {
             const response = await axios({
                 method: 'post',
-                // Stripe expects the total in currencies subunits
                 url: `/payments/create?total=${basketTotal * 100}`
             })
             setClientSecret(response.data.clientSecret)
@@ -44,39 +41,25 @@ function Payment() {
     }, [basket, basketTotal])
 
 
-    /**
-     * creates request to stripe with received client secret from the useEffect
-     * and card element from react stripe
-     * 
-     * @param {*} e event object to prevent postback refreshing
-     */
+
     const handlePaymentSubmit = async (e) => {
         e.preventDefault();
         if (!stripe || !elements) {
-            // Stripe.js has not loaded yet. Make sure to disable
-            // form submission until Stripe.js has loaded.
             return;
         }
-        setProcessing(true);
-        const cardElement = elements.getElement(CardElement);
-        if (clientSecret) {
-            await paymentHelper.confirmPaymentWithSecret(stripe, clientSecret, cardElement, user, basket)
-            setSucceeded(true)
-            setProcessing(false)
-            setError(null)
-            history.replace('/orders')
-        } else {
-            const {error, paymentMethod} = await confirmPaymentWithoutSecret(stripe, elements, cardElement)
-            setProcessing(false)
-            if (paymentMethod) {
-                setSucceeded(true)
-                setError(null)
-                history.replace('/orders')
-            } else {
-                setError(error.message)
-            }
+        const paymentParameters = {
+            stripe,
+            elements,
+            CardElement,
+            clientSecret,
+            user,
+            basket,
+            history,
+            setProcessing,
+            setSucceeded,
+            setError,
         }
-        dispatch(basketActionCreator.emptyBasketAction())
+        await submitPayment(paymentParameters)
     }
 
     const handlePaymentChange = (e) => {

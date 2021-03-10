@@ -1,4 +1,4 @@
-import {reducerTypes} from '../reducerTypes';
+import {basketReducerTypes} from '../reducerTypes';
 
 export const initialBasketState = {
     basket: [],
@@ -8,12 +8,12 @@ export const getBasketTotal = (basket) => basket?.reduce((amount, item) => item.
 
 const basketReducer = (state = initialBasketState, action) => {
     switch (action.type) {
-        case reducerTypes.ADD_TO_BASKET:
+        case basketReducerTypes.ADD_TO_BASKET:
             return {
                 ...state,
                 basket: [...state.basket, action.item],
             };
-        case reducerTypes.REMOVE_FROM_BASKET:
+        case basketReducerTypes.REMOVE_FROM_BASKET:
             const index = state.basket.findIndex((basketItem) =>
                 basketItem.id === action.id
             );
@@ -26,7 +26,7 @@ const basketReducer = (state = initialBasketState, action) => {
                 ...state,
                 basket: newBasket
             }
-        case reducerTypes.EMPTY_BASKET:
+        case basketReducerTypes.EMPTY_BASKET:
             return {
                 ...state,
                 basket: [],

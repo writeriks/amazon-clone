@@ -7,13 +7,13 @@ import {loadStripe} from '@stripe/stripe-js';
 import {Elements} from '@stripe/react-stripe-js';
 import {auth} from './Firebase-Backend/firebase'
 
-import Payment from './Payment/Payment.';
-import Header from './Header/Header';
-import Home from './Home/Home';
-import Login from './Authentication/Login';
-import Orders from './Orders/Orders';
+import Payment from './Payment/payment';
+import Header from './Header/header';
+import Home from './Home/home';
+import Login from './Authentication/login';
+import OrderList from './Orders/order-list';
 import Register from './Authentication/register';
-import Checkout from './Checkout/Checkout';
+import Checkout from './Checkout/checkout';
 import './App.css';
 
 const promise = loadStripe('pk_test_D19nfyE8JfMSP99ms7Atlxlf0001HGdMyF');
@@ -39,7 +39,7 @@ function App() {
         <Switch>
           <Route path="/orders">
             <Header />
-            <Orders />
+            <OrderList />
           </Route>
           <Route path="/Register">
             <Register />

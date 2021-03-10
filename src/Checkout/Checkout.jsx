@@ -2,9 +2,9 @@ import React from 'react'
 import authReducerSelector from '../redux-reducer/auth-reducer/auth-reducer-selector'
 import basketReducerSelector from '../redux-reducer/basket-reducer/basket-reducer-selector'
 import {useSelector} from 'react-redux'
-import Subtotal from '../Subtotal/Subtotal';
-import './Checkout.css';
-import CheckoutProduct from './CheckoutProduct';
+import Subtotal from '../Subtotal/subtotal';
+import './checkout.css';
+import CheckoutProduct from './checkout-product';
 import FlipMove from 'react-flip-move';
 
 const Checkout = () => {

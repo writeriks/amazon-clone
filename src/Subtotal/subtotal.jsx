@@ -1,5 +1,5 @@
 import React from 'react'
-import './Subtotal.css'
+import './subtotal.css'
 import CurrencyFormat from 'react-currency-format'
 import basketReducerSelector from '../redux-reducer/basket-reducer/basket-reducer-selector'
 import {useHistory} from 'react-router-dom';

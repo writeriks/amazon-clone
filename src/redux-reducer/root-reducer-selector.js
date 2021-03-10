@@ -2,7 +2,7 @@ import {createSelector} from 'reselect';
 
 
 class RootStateReducer {
-    getRootStateReducer = (state) => state
+    getRootStateReducer = (state) => state;
 
     getAuthReducer = createSelector(
         this.getRootStateReducer,
@@ -12,6 +12,11 @@ class RootStateReducer {
     getBasketReducer = createSelector(
         this.getRootStateReducer,
         (state) => state.basket
+    );
+
+    getDisplayReducer = createSelector(
+        this.getRootStateReducer,
+        (state) => state.display
     )
 }
 
