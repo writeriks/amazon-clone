@@ -1,5 +1,5 @@
 import React from 'react'
-import './Header.css'
+import './header.css'
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';

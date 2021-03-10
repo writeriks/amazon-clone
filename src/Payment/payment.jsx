@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import './Payment.css';
+import './payment.css';
 import basketReducerSelector from '../redux-reducer/basket-reducer/basket-reducer-selector';
-import CheckoutProduct from '../Checkout/CheckoutProduct';
+import CheckoutProduct from '../Checkout/checkout-product';
 import {Link, useHistory} from 'react-router-dom';
 import {CardElement, useElements, useStripe} from '@stripe/react-stripe-js';
 import CurrencyFormat from 'react-currency-format';

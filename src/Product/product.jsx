@@ -1,5 +1,5 @@
 import React from 'react'
-import './Product.css'
+import './product.css'
 import {useDispatch} from 'react-redux'
 import basketActionCreator from '../redux-reducer/basket-reducer/basket-action-creator'
 

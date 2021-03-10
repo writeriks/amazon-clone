@@ -1,6 +1,6 @@
 import React, {forwardRef} from 'react'
 import {useDispatch} from 'react-redux';
-import './CheckoutProduct.css'
+import './checkout-product.css'
 import basketActionCreator from '../redux-reducer/basket-reducer/basket-action-creator'
 
 const CheckoutProduct = forwardRef(({basketItem, hideButton}, ref) => {

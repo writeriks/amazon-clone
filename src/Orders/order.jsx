@@ -1,5 +1,5 @@
 import React from 'react'
-import CheckoutProduct from '../Checkout/CheckoutProduct'
+import CheckoutProduct from '../Checkout/checkout-product'
 import CurrencyFormat from 'react-currency-format'
 import Moment from 'react-moment'
 import './Orders.css'
