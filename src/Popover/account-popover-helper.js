@@ -5,6 +5,7 @@ class AccountPopoverHelper {
     signOutFirebase(user) {
         if (user) {
             auth.signOut();
+            store.dispatch(displayActionCreator.closeMyAccountPopover())
         }
     }
 
