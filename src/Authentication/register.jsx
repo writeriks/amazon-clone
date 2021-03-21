@@ -15,6 +15,11 @@ function Register() {
                 <h1>Register</h1>
                 <RegisterAccountSelect />
                 <CustomerRegister />
+                <button
+                    type="submit"
+                    className="login__signInButton">
+                    Sign In
+                </button>
             </div>
         </div>
     )

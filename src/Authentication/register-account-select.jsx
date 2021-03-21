@@ -1,21 +1,8 @@
 import React, {useState} from 'react'
 import './register.css'
-import {withStyles} from '@material-ui/core/styles';
-import {green} from '@material-ui/core/colors';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Radio from '@material-ui/core/Radio';
 import {accountTypes} from './account-type-constants';
-
-
-const GreenRadio = withStyles({
-    root: {
-        color: green[400],
-        '&$checked': {
-            color: green[600],
-        },
-    },
-    checked: {},
-})((props) => <Radio color="default" size="small" {...props} />);
+import GreenRadioButton from '../Utility/green-radio-button'
 
 function RegisterAccountSelect() {
     const [registerType, setRegisterType] = useState("customer");
@@ -26,7 +13,7 @@ function RegisterAccountSelect() {
                 <FormControlLabel
                     value={accountTypes.CUSTOMER}
                     control={
-                        <GreenRadio
+                        <GreenRadioButton
                             checked={registerType === accountTypes.CUSTOMER}
                             onChange={(e) => setRegisterType(e.target.value)}
                             value={accountTypes.CUSTOMER}
@@ -40,7 +27,7 @@ function RegisterAccountSelect() {
                 <FormControlLabel
                     value={accountTypes.SUPPLIER}
                     control={
-                        <GreenRadio
+                        <GreenRadioButton
                             checked={registerType === accountTypes.SUPPLIER}
                             onChange={(e) => setRegisterType(e.target.value)}
                             value={accountTypes.SUPPLIER}
