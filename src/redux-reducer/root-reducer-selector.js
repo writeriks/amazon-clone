@@ -18,6 +18,11 @@ class RootStateReducer {
         this.getRootStateReducer,
         (state) => state.display
     )
+
+    getRegisterReducer = createSelector(
+        this.getRootStateReducer,
+        (state) => state.register
+    )
 }
 
 const rootStateReducer = new RootStateReducer();

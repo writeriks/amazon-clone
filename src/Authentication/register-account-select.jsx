@@ -1,22 +1,29 @@
-import React, {useState} from 'react'
-import './register.css'
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import {accountTypes} from './account-type-constants';
-import GreenRadioButton from '../Utility/green-radio-button'
+import React from 'react';
 
-function RegisterAccountSelect() {
-    const [registerType, setRegisterType] = useState("customer");
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import GreenRadioButton from '../Utility/green-radio-button';
+
+import {useSelector} from 'react-redux';
+import registerReducerSelector from '../redux-reducer/register-reducer/register-reducer-selector'
+import {registrationTypes} from '../redux-reducer/register-reducer/register-reducer-constants';
+import registrationHelper from './registration-helper';
+
+import './register.css'
+
+function RegisterAccountSelect(props) {
+    const {handleRegistrationType} = registrationHelper;
+    const registerType = useSelector(registerReducerSelector.getRegistrationType)
 
     return (
         <section className="account__type" >
             <div className="account__type__select">
                 <FormControlLabel
-                    value={accountTypes.CUSTOMER}
+                    value={registrationTypes.CUSTOMER}
                     control={
                         <GreenRadioButton
-                            checked={registerType === accountTypes.CUSTOMER}
-                            onChange={(e) => setRegisterType(e.target.value)}
-                            value={accountTypes.CUSTOMER}
+                            checked={registerType === registrationTypes.CUSTOMER}
+                            onChange={(e) => handleRegistrationType(e.target.value)}
+                            value={registrationTypes.CUSTOMER}
                             name="radio-button-customer"
                             inputProps={{'aria-label': 'customer'}}
                         />
@@ -25,12 +32,12 @@ function RegisterAccountSelect() {
             </div>
             <div className="account__type__select">
                 <FormControlLabel
-                    value={accountTypes.SUPPLIER}
+                    value={registrationTypes.SUPPLIER}
                     control={
                         <GreenRadioButton
-                            checked={registerType === accountTypes.SUPPLIER}
-                            onChange={(e) => setRegisterType(e.target.value)}
-                            value={accountTypes.SUPPLIER}
+                            checked={registerType === registrationTypes.SUPPLIER}
+                            onChange={(e) => handleRegistrationType(e.target.value)}
+                            value={registrationTypes.SUPPLIER}
                             name="radio-button-supplier"
                             inputProps={{'aria-label': 'supplier'}}
                         />
