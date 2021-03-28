@@ -9,11 +9,11 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
 
-    const {signInWithFirebase} = authHelper;
+    const {signInUser} = authHelper;
 
     const signIn = (e) => {
         e.preventDefault()
-        signInWithFirebase(history, email, password)
+        signInUser(history, email, password)
     }
 
     return (

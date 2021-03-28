@@ -16,6 +16,8 @@ import Register from './Authentication/register';
 import Checkout from './Checkout/checkout';
 import './App.css';
 
+import authHelper from './Authentication/auth-helper';
+
 const promise = loadStripe('pk_test_D19nfyE8JfMSP99ms7Atlxlf0001HGdMyF');
 
 function App() {
@@ -24,6 +26,7 @@ function App() {
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
+        authHelper.getUserProfileAndSaveToRedux(authUser)
         dispatch(authReducerActionCreator.setUserAuthentication(authUser))
       } else {
         dispatch(authReducerActionCreator.setUserAuthentication(null))

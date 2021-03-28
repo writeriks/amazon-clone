@@ -1,52 +1,25 @@
-import {auth, db} from '../Firebase-Backend/firebase'
+import {store} from '../reduxStore/createStore';
+import authApiRequests from '../firebaseRequests/auth-api-requests';
 
 
 class AuthHelper {
-    signInWithFirebase(history, email, password) {
-        auth.signInWithEmailAndPassword(email, password)
-            .then((auth) => {
-                history.push('/')
-            }).catch((error) => {
-                alert(error.message)
-            })
+    signInUser(history, email, password) {
+        authApiRequests.signInUserWithFirebase(email, password)
+        history.push("/")
     }
 
     async registerUser(email, password) {
-        try {
-            await auth.createUserWithEmailAndPassword(email, password)
-        } catch (error) {
-            console.log("🚀 ~ file: auth-helper.js ~ line 27 ~ AuthHelper ~ registerUser ~ error", error)
-        }
+        authApiRequests.registerUserWithFirebase(email, password)
     }
 
     async createUserDetails(registerInfo) {
-        const {
-            user,
-            registerType,
-            email,
-            login,
-            phone,
-            taxId,
-            birthdate,
-            consentRegulations,
-            consentMarketingRegulations
-        } = registerInfo;
-        try {
-            await db.collection('users')
-                .doc(user?.id)
-                .set({
-                    registerType,
-                    email,
-                    login,
-                    phone,
-                    taxId,
-                    birthdate,
-                    consentRegulations,
-                    consentMarketingRegulations
-                })
-        } catch (error) {
-            console.log("🚀 ~ file: auth-helper.js ~ line 60 ~ AuthHelper ~ createUserDetails ~ error", error)
-        }
+        authApiRequests.createUserDetailsWithFirebase(registerInfo)
+    }
+
+    async getUserProfileAndSaveToRedux(user) {
+        const profile = await authApiRequests.getCurrentFirebaseUserProfile(user.uid)
+        console.log("🚀 ~ file: auth-helper.js ~ line 21 ~ AuthHelper ~ getUserProfileAndSaveToRedux ~ profile", profile)
+        //authHelper.setUserProfileToRedux(profile)
     }
 }
 

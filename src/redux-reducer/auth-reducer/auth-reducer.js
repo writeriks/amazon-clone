@@ -2,6 +2,7 @@ import {authReducerTypes} from '../reducerTypes';
 
 export const initialAuthState = {
     user: null,
+    profile: {},
 }
 
 const authReducer = (state = initialAuthState, action) => {

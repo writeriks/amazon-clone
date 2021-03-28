@@ -23,7 +23,6 @@ function Register() {
     const email = useSelector(registerReducerSelector.getEmail)
     const password = useSelector(registerReducerSelector.getPassword)
     const login = useSelector(registerReducerSelector.getLogin)
-    console.log("🚀 ~ file: register.jsx ~ line 26 ~ Register ~ login", login)
     const phone = useSelector(registerReducerSelector.getPhone)
     const taxId = useSelector(registerReducerSelector.getTaxId)
     const birthdate = useSelector(registerReducerSelector.getBirthdate)
