@@ -25,10 +25,8 @@ function App() {
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         dispatch(authReducerActionCreator.setUserAuthentication(authUser))
-        //setUserAuthentication(authUser, dispatch)
       } else {
         dispatch(authReducerActionCreator.setUserAuthentication(null))
-        //setUserAuthentication(null, dispatch)
       }
     })
   }, [dispatch])

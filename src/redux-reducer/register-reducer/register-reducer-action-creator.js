@@ -13,10 +13,10 @@ class DisplayActionCreator {
             email
         }
     };
-    setLogin = (email) => {
+    setLogin = (login) => {
         return {
             type: registerReducerTypes.SET_LOGIN,
-            email
+            login
         }
     };
     setPhone = (phone) => {
