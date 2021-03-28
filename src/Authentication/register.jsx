@@ -17,7 +17,7 @@ import registrationHelper from './registration-helper';
 
 function Register() {
     const history = useHistory();
-    const {registerUser, createUserDetails} = authHelper
+    const {registerUser} = authHelper
     const {removeAllSelections} = registrationHelper
     const registerType = useSelector(registerReducerSelector.getRegistrationType)
     const email = useSelector(registerReducerSelector.getEmail)
@@ -28,29 +28,26 @@ function Register() {
     const birthdate = useSelector(registerReducerSelector.getBirthdate)
     const consentRegulations = useSelector(registerReducerSelector.getConsentRegulations)
     const consentMarketingRegulations = useSelector(registerReducerSelector.getMarketingRegulations)
-    const user = useSelector(authReducerSelector.getCurrentUser)
+    const user = useSelector(authReducerSelector.getFirebaseUser)
+
+    const registerInfo = {
+        registerType,
+        email,
+        password,
+        login,
+        phone,
+        taxId,
+        birthdate,
+        consentRegulations,
+        consentMarketingRegulations
+    }
 
     useEffect(() => {
         if (user) {
-            const registerInfo = {
-                user,
-                registerType,
-                email,
-                login,
-                phone,
-                taxId,
-                birthdate,
-                consentRegulations,
-                consentMarketingRegulations
-            }
-            createUserDetails(registerInfo)
             history.push("/")
             removeAllSelections()
         }
-    }, [email, user, registerType,
-        login, phone, taxId,
-        birthdate, consentRegulations, consentMarketingRegulations,
-        createUserDetails, history, removeAllSelections])
+    }, [user, history, removeAllSelections])
 
     return (
         <div className="register">
@@ -71,7 +68,7 @@ function Register() {
                 <button
                     type="submit"
                     className="login__signInButton"
-                    onClick={() => registerUser(email, password)}>
+                    onClick={() => registerUser(registerInfo)}>
                     Sign In
                 </button>
             </div>

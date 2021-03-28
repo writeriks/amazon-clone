@@ -16,7 +16,7 @@ function Payment() {
 
     const basket = useSelector(basketReducerSelector.getBasket)
     const basketTotal = useSelector(basketReducerSelector.getBasketTotal)
-    const user = useSelector(authReducerSelector.getCurrentUser)
+    const user = useSelector(authReducerSelector.getFirebaseUser)
 
     const stripe = useStripe();
     const elements = useElements();

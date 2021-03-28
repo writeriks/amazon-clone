@@ -1,7 +1,5 @@
 import {useEffect} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import authReducerActionCreator from './redux-reducer/auth-reducer/auth-action-creator';
-import {useDispatch} from 'react-redux'
 
 import {loadStripe} from '@stripe/stripe-js';
 import {Elements} from '@stripe/react-stripe-js';
@@ -21,18 +19,14 @@ import authHelper from './Authentication/auth-helper';
 const promise = loadStripe('pk_test_D19nfyE8JfMSP99ms7Atlxlf0001HGdMyF');
 
 function App() {
-  const dispatch = useDispatch()
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
-        authHelper.getUserProfileAndSaveToRedux(authUser)
-        dispatch(authReducerActionCreator.setUserAuthentication(authUser))
-      } else {
-        dispatch(authReducerActionCreator.setUserAuthentication(null))
+      if (!authUser) {
+        authHelper.removeUserFromRedux()
       }
     })
-  }, [dispatch])
+  }, [])
 
   return (
     <Router>

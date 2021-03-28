@@ -5,7 +5,7 @@ import authReducerSelector from '../redux-reducer/auth-reducer/auth-reducer-sele
 
 
 function SignedInUserPopover() {
-    const user = useSelector(authReducerSelector.getCurrentUser)
+    const user = useSelector(authReducerSelector.getFirebaseUser)
     const {signOutFirebase} = accountPopoverHelper;
 
     return (

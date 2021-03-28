@@ -9,7 +9,7 @@ import FlipMove from 'react-flip-move';
 
 const Checkout = () => {
     const basket = useSelector(basketReducerSelector.getBasket)
-    const user = useSelector(authReducerSelector.getCurrentUser)
+    const user = useSelector(authReducerSelector.getFirebaseUser)
 
     return (
         <div className="checkout">

@@ -1,16 +1,21 @@
-import {authReducerTypes} from '../reducerTypes';
+import {authReducerTypes} from './auth-reducer-constants';
 
 export const initialAuthState = {
-    user: null,
-    profile: {},
+    firebaseUser: null,
+    userProfile: null,
 }
 
 const authReducer = (state = initialAuthState, action) => {
     switch (action.type) {
-        case authReducerTypes.SET_USER:
+        case authReducerTypes.SET_FIREBASE_USER:
             return {
                 ...state,
-                user: action.user
+                firebaseUser: action.firebaseUser
+            }
+        case authReducerTypes.SET_USER_PROFILE:
+            return {
+                ...state,
+                userProfile: action.userProfile
             }
         default:
             return state;

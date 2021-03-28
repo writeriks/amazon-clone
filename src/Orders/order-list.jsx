@@ -8,7 +8,7 @@ import authReducerSelector from '../redux-reducer/auth-reducer/auth-reducer-sele
 
 function OrderList() {
     const [orders, setOrders] = useState([]);
-    const user = useSelector(authReducerSelector.getCurrentUser)
+    const user = useSelector(authReducerSelector.getFirebaseUser)
 
     useEffect(() => {
         if (user) {

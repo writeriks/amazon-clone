@@ -13,16 +13,17 @@ class AuthApiRequests {
 
     async registerUserWithFirebase(email, password) {
         try {
-            await auth.createUserWithEmailAndPassword(email, password)
+            const registeredUser = await auth.createUserWithEmailAndPassword(email, password)
+            return registeredUser;
         } catch (error) {
             console.log("🚀 ~ file: auth-api-requests.js ~ line 18 ~ AuthApiRequests ~ registerUserWithFirebase ~ error", error)
         }
     }
 
-    async createUserDetailsWithFirebase(registerInfo) {
+    async createUserDetailsWithFirebase(registerInfo, user) {
         try {
             const {
-                user, registerType, email, login, phone,
+                registerType, email, login, phone,
                 taxId, birthdate, consentRegulations, consentMarketingRegulations
             } = registerInfo;
             await db.collection('users')

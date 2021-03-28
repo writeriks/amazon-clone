@@ -113,7 +113,7 @@ button{
   }
 
 @media (max-height: 680px) {
-    button{
+    .register__container > button{
         position: sticky;
         bottom: 0;
     }

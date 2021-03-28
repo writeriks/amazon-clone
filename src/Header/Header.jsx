@@ -15,7 +15,7 @@ import headerHelper from './header-helper';
 
 function Header() {
     const basket = useSelector(basketReducerSelector.getBasket)
-    const user = useSelector(authReducerSelector.getCurrentUser)
+    const user = useSelector(authReducerSelector.getFirebaseUser)
 
     const popoverEl = useSelector(displayReducerSelector.getPopover)
     const {openMyAccountPopover, closeMyAccountPopover} = headerHelper;
