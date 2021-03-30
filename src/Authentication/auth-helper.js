@@ -4,13 +4,20 @@ import authReducerActionCreator from '../redux-reducer/auth-reducer/auth-action-
 
 class AuthHelper {
     async signInUser(history, email, password) {
-        await authApiRequests.signInUserWithFirebase(email, password)
+        const user = await authApiRequests.signInUserWithFirebase(email, password)
+        if (!user) {
+            console.error("ERROR : User did no return")
+        }
+        await authHelper.getUserProfileAndSaveToRedux(user)
         history.push("/")
     }
 
     async registerUser(registerInfo) {
         const {email, password} = registerInfo;
         const {user} = await authApiRequests.registerUserWithFirebase(email, password)
+        if (!user) {
+            console.error("ERROR : User did not register")
+        }
         await authHelper.createUserDetails(registerInfo, user)
         await authHelper.getUserProfileAndSaveToRedux(user)
     }

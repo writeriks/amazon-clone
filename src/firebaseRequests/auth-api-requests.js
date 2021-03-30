@@ -5,7 +5,8 @@ class AuthApiRequests {
 
     async signInUserWithFirebase(email, password) {
         try {
-            await auth.signInWithEmailAndPassword(email, password)
+            const {user} = await auth.signInWithEmailAndPassword(email, password)
+            return user
         } catch (error) {
             console.log("🚀 ~ file: auth-api-requests.js ~ line 10 ~ AuthApiRequests ~ signInUserWithFirebase ~ error", error)
         }
