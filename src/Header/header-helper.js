@@ -3,11 +3,12 @@ import displayActionCreator from '../redux-reducer/display-reducer/display-reduc
 
 class HeaderHelper {
     openMyAccountPopover(event) {
-        store.dispatch(displayActionCreator.openMyAccountPopover(event.currentTarget))
+        const anchorEl = event.currentTarget
+        store.dispatch(displayActionCreator.openMyAccountPopover(anchorEl))
     }
 
     closeMyAccountPopover() {
-        store.dispatch(displayActionCreator.closeMyAccountPopover())
+        store.dispatch(displayActionCreator.closePopover())
     }
 }
 

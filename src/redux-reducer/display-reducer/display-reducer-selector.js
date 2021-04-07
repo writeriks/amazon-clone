@@ -2,9 +2,9 @@ import {createSelector} from 'reselect';
 import rootStateReducer from '../../redux-reducer/root-reducer-selector';
 
 class DisplayReducerSelector {
-    getPopover = createSelector(
+    getPopoverAnchorElement = createSelector(
         rootStateReducer.getDisplayReducer,
-        (displayReducer) => displayReducer.popoverElement
+        (displayReducer) => displayReducer.popoverAnchorElement
     )
 }
 
