@@ -1,4 +1,4 @@
-import {displayReducerTypes} from '../reducerTypes';
+import {displayReducerTypes} from './displayReducerConstants';
 
 class DisplayActionCreator {
     openMyAccountPopover = (popoverElement) => {

@@ -1,4 +1,4 @@
-import {displayReducerTypes} from '../reducerTypes';
+import {displayReducerTypes} from './displayReducerConstants';
 
 export const initialDisplayState = {
     popoverElement: null,
