@@ -15,10 +15,12 @@ function CustomerRegister() {
         handleRegistrationConsent,
         handleMarketingConsent,
         handleSelectAllRegulations,
+        handleLoginChange
     } = registrationHelper;
 
     const email = useSelector(registerReducerSelector.getEmail)
     const password = useSelector(registerReducerSelector.getPassword)
+    const login = useSelector(registerReducerSelector.getLogin)
     const birthdate = useSelector(registerReducerSelector.getBirthdate)
     const consentRegulations = useSelector(registerReducerSelector.getConsentRegulations)
     const consentMarketingRegulations = useSelector(registerReducerSelector.getMarketingRegulations)
@@ -30,6 +32,7 @@ function CustomerRegister() {
             <div className="register-data">
                 <p>1. Registration data</p>
                 <input type='text' placeholder="Email" value={email} onChange={(e) => handleEmailChange(e.target.value)} />
+                <input type='text' placeholder="Login" value={login} onChange={(e) => handleLoginChange(e.target.value)} />
                 <input type='password' placeholder="Password" value={password} onChange={(e) => handlePasswordChange(e.target.value)} />
             </div>
             <div className="date__of__birth">

@@ -1,7 +1,8 @@
 import {store} from '../reduxStore/createStore';
 import registerReducerActionCreator from '../redux-reducer/register-reducer/register-reducer-action-creator';
+import {registrationTypes} from '../redux-reducer/register-reducer/register-reducer-constants';
 
-class RegistrationHelper {
+export class RegistrationHelper {
     handleRegistrationType(registrationType) {
         store.dispatch(registerReducerActionCreator.setRegistrationType(registrationType))
         registrationHelper.removeAllSelections()
@@ -59,6 +60,64 @@ class RegistrationHelper {
         store.dispatch(registerReducerActionCreator.setBirthdate(""))
         store.dispatch(registerReducerActionCreator.setRegistrationConsent(false))
         store.dispatch(registerReducerActionCreator.setMarketingConsent(false))
+    }
+
+    shouldDisableSubmitButton = (registerInfo) => {
+        const {
+            registerType,
+            email,
+            password,
+            login,
+            phone,
+            taxId,
+            birthdate,
+            consentRegulations,
+        } = registerInfo
+
+        let validation = [
+            this.isValidEmail(email),
+            this.isValidLogin(login),
+            this.isValidPassword(password),
+        ]
+
+        if (registerType === registrationTypes.CUSTOMER) {
+            validation.push(this.isValidBirthdate(birthdate))
+            validation.push(this.isRegulationChecked(consentRegulations))
+        }
+
+        if (registerType === registrationTypes.SUPPLIER) {
+            validation.push(this.isValidPhone(phone))
+            validation.push(this.isValidTaxId(taxId))
+        }
+        return validation.every((validtionCheck) => validtionCheck === true)
+    }
+
+    isValidEmail(email) {
+        return email !== ""
+    }
+
+    isValidLogin(login) {
+        return login !== ""
+    }
+
+    isValidPassword(password) {
+        return password !== ""
+    }
+
+    isValidTaxId(taxId) {
+        return taxId !== ""
+    }
+
+    isValidBirthdate(birthdate) {
+        return birthdate !== ""
+    }
+
+    isValidPhone(phone) {
+        return phone !== ""
+    }
+
+    isRegulationChecked(consentRegulations) {
+        return consentRegulations
     }
 }
 

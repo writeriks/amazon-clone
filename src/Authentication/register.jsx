@@ -18,7 +18,7 @@ import registrationHelper from './registration-helper';
 function Register() {
     const history = useHistory();
     const {registerUser} = authHelper
-    const {removeAllSelections} = registrationHelper
+    const {removeAllSelections, shouldDisableSubmitButton} = registrationHelper
     const registerType = useSelector(registerReducerSelector.getRegistrationType)
     const email = useSelector(registerReducerSelector.getEmail)
     const password = useSelector(registerReducerSelector.getPassword)
@@ -68,6 +68,7 @@ function Register() {
                 <button
                     type="submit"
                     className="login__signInButton"
+                    disabled={!shouldDisableSubmitButton(registerInfo)}
                     onClick={() => registerUser(registerInfo)}>
                     Sign In
                 </button>
