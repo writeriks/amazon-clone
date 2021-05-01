@@ -27,9 +27,13 @@ class AuthHelper {
     }
 
     async getUserProfileAndSaveToRedux(user) {
-        const profile = await authApiRequests.getCurrentFirebaseUserProfile(user.uid)
-        store.dispatch(authReducerActionCreator.setUserProfile(profile))
-        store.dispatch(authReducerActionCreator.setUserAuthentication(user))
+        try {
+            const profile = await authApiRequests.getCurrentFirebaseUserProfile(user.uid)
+            store.dispatch(authReducerActionCreator.setUserProfile(profile))
+            store.dispatch(authReducerActionCreator.setUserAuthentication(user))
+        } catch (e) {
+            console.log("🚀 ~ file: auth-helper.js ~ line 35 ~ AuthHelper ~ getUserProfileAndSaveToRedux ~ e", e)
+        }
     }
 
     removeUserFromRedux() {

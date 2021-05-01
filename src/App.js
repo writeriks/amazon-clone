@@ -6,12 +6,12 @@ import {Elements} from '@stripe/react-stripe-js';
 import {auth} from './Firebase-Backend/firebase'
 
 import Payment from './Payment/payment';
-import Header from './Header/header';
+import Header from './Header/Header';
 import Home from './Home/home';
 import Login from './Authentication/login';
 import OrderList from './Orders/order-list';
 import Register from './Authentication/register';
-import Checkout from './Checkout/checkout';
+import Checkout from './Checkout/Checkout';
 import './App.css';
 
 import authHelper from './Authentication/auth-helper';
