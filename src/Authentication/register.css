@@ -1,0 +1,136 @@
+
+.register{
+    background-color: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.account__type{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.customer-register{
+    padding: 16px;
+}
+
+.seperate-line{
+    margin: 10px 0;
+    width: 100%;
+    border-top: 1px solid lightgrey;
+}
+
+.consent{
+    width: 98%;
+    display: flex;
+    flex-direction: column;
+}
+
+.consent > div{
+    width: 98%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+.consent > label{
+    width: 98%;
+    display: block;
+    padding-top: 5px;
+}
+
+.consent > label * + *{
+    padding-left: 5px;
+}
+
+h1 {
+    font-weight: 500;
+    margin-bottom: 10px;
+    padding-left: 16px;
+}
+
+.register__container > * input[type=text], [type=password], [type=date]{
+    height: 30px;
+    margin-bottom: 10px;
+    background-color: white;
+    width: 98%;
+}
+
+input[type=checkbox]{
+    vertical-align: middle;
+    position: relative;
+    bottom: 1px;
+}
+
+button{
+    background: #f0c14b;
+    border-radius: 2px;
+    border: 1px solid;
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+    border-color:  #a88734 #9c7e31 #846a29;
+}
+
+@media (min-width: 1500px) {
+    .register__container{
+        width: 30vw;
+        border-radius: 5px;
+        padding: 20px;
+        border: 1px solid lightgrey;
+    }
+  }
+
+@media (max-width: 1500px) {
+    .register__container{
+        width: 40vw;
+        border-radius: 5px;
+        padding: 20px;
+        border: 1px solid lightgrey;
+    }
+  }
+
+@media (max-width: 1200px) {
+    .register__container{
+        width: 60vw;
+        border-radius: 5px;
+        padding: 20px;
+        border: 1px solid lightgrey;
+    }
+  }
+
+@media (max-width: 800px) {
+    .register__container{
+        width: 100vw;
+        border: none;
+        border-top: 1px solid lightgrey;
+        border-radius: 0;
+        padding: 0;
+    }
+  }
+
+@media (max-height: 680px) {
+    .register__container > button{
+        position: sticky;
+        bottom: 0;
+    }
+
+    .register__container{
+        border: none;
+    }
+
+    .registration_banner{
+        position: sticky;
+        display: flex;
+        top: 0;
+        width: 100%;
+        align-items: center;
+        flex-direction: column;
+        background-color: white;
+        z-index: 100;
+        border-bottom: 1px solid lightgray;
+    }
+  }

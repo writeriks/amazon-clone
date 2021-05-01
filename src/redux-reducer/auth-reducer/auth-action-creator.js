@@ -1,10 +1,16 @@
-import {authReducerTypes} from "../reducerTypes";
+import {authReducerTypes} from "./auth-reducer-constants";
 
 class AuthReducerActionCreator {
-    setUserAuthentication(user) {
+    setUserAuthentication(firebaseUser) {
         return {
-            type: authReducerTypes.SET_USER,
-            user: user
+            type: authReducerTypes.SET_FIREBASE_USER,
+            firebaseUser: firebaseUser
+        }
+    }
+    setUserProfile(profile) {
+        return {
+            type: authReducerTypes.SET_USER_PROFILE,
+            userProfile: profile
         }
     }
 }

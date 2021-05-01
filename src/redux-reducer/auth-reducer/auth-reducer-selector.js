@@ -2,9 +2,13 @@ import {createSelector} from 'reselect';
 import rootStateReducer from '../../redux-reducer/root-reducer-selector';
 
 class AuthReducerSelector {
-    getCurrentUser = createSelector(
+    getFirebaseUser = createSelector(
         rootStateReducer.getAuthReducer,
-        (authReducer) => authReducer.user
+        (authReducer) => authReducer.firebaseUser
+    )
+    getUserProfile = createSelector(
+        rootStateReducer.getAuthReducer,
+        (authReducer) => authReducer.userProfile
     )
 }
 

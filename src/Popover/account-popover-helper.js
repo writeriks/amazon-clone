@@ -5,16 +5,17 @@ class AccountPopoverHelper {
     signOutFirebase(user) {
         if (user) {
             auth.signOut();
+            store.dispatch(displayActionCreator.closePopover())
         }
     }
 
     redirectToLogin = (history) => {
-        store.dispatch(displayActionCreator.closeMyAccountPopover())
+        store.dispatch(displayActionCreator.closePopover())
         history.push("/login")
     }
 
     redirectToRegister = () => {
-        store.dispatch(displayActionCreator.closeMyAccountPopover())
+        store.dispatch(displayActionCreator.closePopover())
     }
 }
 

@@ -1,14 +1,14 @@
-import {displayReducerTypes} from '../reducerTypes';
+import {displayReducerTypes} from './displayReducerConstants';
 
 class DisplayActionCreator {
-    openMyAccountPopover = (anchorEl) => {
+    openMyAccountPopover = (popoverAnchorElement) => {
         return {
             type: displayReducerTypes.OPEN_MY_ACCOUNT_POPOVER,
-            anchorEl
+            popoverAnchorElement
         }
     };
 
-    closeMyAccountPopover = () => {
+    closePopover = () => {
         return {
             type: displayReducerTypes.CLOSE_POPOVER,
         }

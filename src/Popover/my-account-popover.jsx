@@ -7,7 +7,7 @@ import {useSelector} from 'react-redux'
 
 
 function MyAccount() {
-    const user = useSelector(authReducerSelector.getCurrentUser)
+    const user = useSelector(authReducerSelector.getFirebaseUser)
 
     return (
         <div className="myAccount">

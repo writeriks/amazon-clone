@@ -3,12 +3,3 @@ export const basketReducerTypes = {
     REMOVE_FROM_BASKET: 'REMOVE_FROM_BASKET',
     EMPTY_BASKET: 'EMPTY_BASKET'
 }
-
-export const authReducerTypes = {
-    SET_USER: 'SET_USER',
-}
-
-export const displayReducerTypes = {
-    OPEN_MY_ACCOUNT_POPOVER: 'OPEN_MY_ACCOUNT_POPOVER',
-    CLOSE_POPOVER: 'CLOSE_POPOVER',
-}
