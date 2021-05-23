@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
 
-import {useSelector} from 'react-redux';
+import {useSelector} from 'react-redux'
 import registerReducerSelector from '../redux-reducer/register-reducer/register-reducer-selector'
 
 import './register.css'
 
-import registrationHelper from './registration-helper';
+import registrationHelper from './registration-helper'
 
 function CustomerRegister() {
     const {
@@ -16,7 +16,7 @@ function CustomerRegister() {
         handleMarketingConsent,
         handleSelectAllRegulations,
         handleLoginChange
-    } = registrationHelper;
+    } = registrationHelper
 
     const email = useSelector(registerReducerSelector.getEmail)
     const password = useSelector(registerReducerSelector.getPassword)
@@ -25,7 +25,7 @@ function CustomerRegister() {
     const consentRegulations = useSelector(registerReducerSelector.getConsentRegulations)
     const consentMarketingRegulations = useSelector(registerReducerSelector.getMarketingRegulations)
 
-    const [selectAll, setSelectAll] = useState(false);
+    const [selectAll, setSelectAll] = useState(false)
 
     return (
         <section className="customer-register">

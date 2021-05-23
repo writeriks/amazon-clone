@@ -1,22 +1,22 @@
-import {store} from '../reduxStore/createStore';
-import authApiRequests from '../firebaseRequests/auth-api-requests';
+import {store} from '../reduxStore/createStore'
+import authApiRequests from '../firebaseRequests/auth-api-requests'
 import authReducerActionCreator from '../redux-reducer/auth-reducer/auth-action-creator'
 
 class AuthHelper {
     async signInUser(history, email, password) {
         const user = await authApiRequests.signInUserWithFirebase(email, password)
         if (!user) {
-            console.error("ERROR : User did no return")
+            console.error('ERROR : User did no return')
         }
         await authHelper.getUserProfileAndSaveToRedux(user)
-        history.push("/")
+        history.push('/')
     }
 
     async registerUser(registerInfo) {
-        const {email, password} = registerInfo;
+        const {email, password} = registerInfo
         const {user} = await authApiRequests.registerUserWithFirebase(email, password)
         if (!user) {
-            console.error("ERROR : User did not register")
+            console.error('ERROR : User did not register')
         }
         await authHelper.createUserDetails(registerInfo, user)
         await authHelper.getUserProfileAndSaveToRedux(user)
@@ -32,7 +32,7 @@ class AuthHelper {
             store.dispatch(authReducerActionCreator.setUserProfile(profile))
             store.dispatch(authReducerActionCreator.setUserAuthentication(user))
         } catch (e) {
-            console.log("🚀 ~ file: auth-helper.js ~ line 35 ~ AuthHelper ~ getUserProfileAndSaveToRedux ~ e", e)
+            console.log('🚀 ~ file: auth-helper.js ~ line 35 ~ AuthHelper ~ getUserProfileAndSaveToRedux ~ e', e)
         }
     }
 
@@ -42,5 +42,5 @@ class AuthHelper {
     }
 }
 
-const authHelper = new AuthHelper();
-export default authHelper;
+const authHelper = new AuthHelper()
+export default authHelper

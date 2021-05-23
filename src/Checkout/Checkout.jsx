@@ -2,10 +2,10 @@ import React from 'react'
 import authReducerSelector from '../redux-reducer/auth-reducer/auth-reducer-selector'
 import basketReducerSelector from '../redux-reducer/basket-reducer/basket-reducer-selector'
 import {useSelector} from 'react-redux'
-import Subtotal from '../Subtotal/subtotal';
-import './checkout.css';
-import CheckoutProduct from './checkout-product';
-import FlipMove from 'react-flip-move';
+import Subtotal from '../Subtotal/subtotal'
+import './checkout.css'
+import CheckoutProduct from './checkout-product'
+import FlipMove from 'react-flip-move'
 
 const Checkout = () => {
     const basket = useSelector(basketReducerSelector.getBasket)
@@ -25,7 +25,7 @@ const Checkout = () => {
                         Your Shopping Basket
                     </h2>
                     <FlipMove leaveAnimation="accordionHorizontal">
-                        {basket.map((basketItem, i) => (
+                        {basket.map((basketItem) => (
                             <CheckoutProduct key={basketItem.id} basketItem={basketItem} />
                         ))}
                     </FlipMove>

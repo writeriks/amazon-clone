@@ -16,8 +16,8 @@ import headerHelper from './header-helper';
 function Header() {
     const basket = useSelector(basketReducerSelector.getBasket)
     const user = useSelector(authReducerSelector.getFirebaseUser)
-
     const popoverAnchorElement = useSelector(displayReducerSelector.getPopoverAnchorElement)
+
     const {openMyAccountPopover, closeMyAccountPopover} = headerHelper;
 
     const helloMessage = user ? `Hello ${user?.email}` : 'Hello Guest';
